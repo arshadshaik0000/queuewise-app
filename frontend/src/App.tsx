@@ -412,15 +412,10 @@ export default function App() {
                     </div>
 
                     {/* Footer — Request ID + API Version */}
-                    <div style={{
-                        textAlign: "center",
-                        fontSize: "0.7rem",
-                        color: "#555578",
-                        marginTop: "1.5rem",
-                        fontFamily: "monospace",
-                    }}>
-                        {lastRequestId && <div>Request ID: {lastRequestId}</div>}
-                        {apiVersion && <div>API {apiVersion}</div>}
+                    <div className="app-footer">
+                        {lastRequestId && <span>Request ID: {lastRequestId}</span>}
+                        {lastRequestId && apiVersion && <span> · </span>}
+                        {apiVersion && <span>API {apiVersion}</span>}
                     </div>
                 </>
             )}

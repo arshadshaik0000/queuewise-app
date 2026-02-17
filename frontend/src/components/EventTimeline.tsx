@@ -1,10 +1,5 @@
 /**
- * EventTimeline — Read-only list of recent queue events.
- *
- * WHY this exists:
- *   Provides observability into what happened in the queue.
- *   Operators can trace actions (JOIN, SERVE, SKIP, PAUSED, etc.)
- *   without checking backend logs directly. Simple list — no animations.
+ * EventTimeline — Animated event log with hover-reveal trace IDs.
  */
 
 interface EventItem {
@@ -20,13 +15,13 @@ interface Props {
     events: EventItem[];
 }
 
-// Map action types to simple icons for scanability
 const ACTION_ICONS: Record<string, string> = {
     JOIN: "➕",
     SERVE: "⚡",
     SKIP: "⏭",
     PAUSED: "⏸",
     RESUMED: "▶",
+    JOIN_ATTEMPT: "🚫",
 };
 
 export default function EventTimeline({ events }: Props) {
@@ -35,27 +30,21 @@ export default function EventTimeline({ events }: Props) {
     return (
         <div className="card">
             <div className="card-title">📜 Event Timeline</div>
-            <div style={{ maxHeight: "220px", overflowY: "auto" }}>
-                {events.map((evt) => (
+            <div className="event-timeline">
+                {events.map((evt, i) => (
                     <div
                         key={evt.id}
-                        style={{
-                            display: "flex",
-                            justifyContent: "space-between",
-                            alignItems: "center",
-                            padding: "0.35rem 0",
-                            borderBottom: "1px solid rgba(255,255,255,0.05)",
-                            fontSize: "0.8rem",
-                        }}
+                        className="event-item"
+                        style={{ animationDelay: `${i * 0.03}s` }}
                     >
-                        <span>
+                        <span className="event-item-text">
                             {ACTION_ICONS[evt.action] || "•"}{" "}
-                            <strong>{evt.action}</strong>{" "}
-                            <span style={{ color: evt.result === "BLOCKED" ? "#f04e5e" : "#8888a8" }}>
+                            <span className="event-item-action">{evt.action}</span>{" "}
+                            <span className={`event-item-result ${evt.result === "BLOCKED" ? "blocked" : "ok"}`}>
                                 {evt.result}
                             </span>
                         </span>
-                        <span style={{ color: "#555578", fontSize: "0.7rem", fontFamily: "monospace" }}>
+                        <span className="event-item-trace">
                             {evt.request_id?.slice(0, 8)}
                         </span>
                     </div>

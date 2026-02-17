@@ -1,10 +1,5 @@
 /**
- * PreviewPanel — Read-only preview of the next queue action.
- *
- * WHY this exists:
- *   Operators need to see what WOULD happen before committing
- *   to serve or skip. This calls the read-only /preview endpoint
- *   and shows projected outcomes without side effects.
+ * PreviewPanel — Read-only preview with animated result display.
  */
 
 import { useState } from "react";
@@ -42,17 +37,23 @@ export default function PreviewPanel({ onPreview }: Props) {
                 className="btn btn-primary"
                 onClick={handlePreview}
                 disabled={loading}
-                style={{ marginBottom: preview ? "0.6rem" : 0 }}
+                style={{ marginBottom: preview ? "0.75rem" : 0 }}
             >
-                {loading ? "Loading..." : "Preview"}
+                {loading ? "⏳ Loading..." : "🔮 Preview"}
             </button>
 
             {preview && (
-                <div style={{ fontSize: "0.85rem", lineHeight: 1.6 }}>
-                    <div><strong>If served →</strong> {preview.next_if_served}</div>
-                    <div><strong>If skipped →</strong> next up: {preview.next_if_skipped}</div>
-                    <div style={{ color: "#8888a8", marginTop: "0.25rem" }}>
-                        {preview.projected_wait_change}
+                <div className="preview-result">
+                    <div className="preview-result-item">
+                        <span className="preview-result-label">If served →</span>
+                        <span className="preview-result-value">{preview.next_if_served}</span>
+                    </div>
+                    <div className="preview-result-item">
+                        <span className="preview-result-label">If skipped →</span>
+                        <span className="preview-result-value">next up: {preview.next_if_skipped}</span>
+                    </div>
+                    <div className="preview-result-muted">
+                        ⏱ {preview.projected_wait_change}
                     </div>
                 </div>
             )}
