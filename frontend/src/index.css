@@ -1,0 +1,467 @@
+/* ========================
+   QueueWise Design System
+   ======================== */
+
+/* ---------- Reset & Base ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --bg-primary: #0a0a1a;
+  --bg-card: rgba(18, 18, 40, 0.85);
+  --bg-card-hover: rgba(28, 28, 60, 0.95);
+  --text-primary: #e8e8f0;
+  --text-secondary: #8888a8;
+  --accent: #7c5cfc;
+  --accent-glow: rgba(124, 92, 252, 0.3);
+  --accent-hover: #9b7eff;
+  --success: #2cc984;
+  --success-bg: rgba(44, 201, 132, 0.12);
+  --error: #f04e5e;
+  --error-bg: rgba(240, 78, 94, 0.12);
+  --warning: #f0a030;
+  --warning-bg: rgba(240, 160, 48, 0.12);
+  --border: rgba(100, 100, 160, 0.15);
+  --radius: 12px;
+  --radius-sm: 8px;
+  --transition: 0.2s ease;
+  --font: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+body {
+  font-family: var(--font);
+  background: var(--bg-primary);
+  background-image:
+    radial-gradient(ellipse at 20% 0%, rgba(124, 92, 252, 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 100%, rgba(44, 201, 132, 0.05) 0%, transparent 50%);
+  color: var(--text-primary);
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- App Container ---------- */
+.app {
+  max-width: 640px;
+  margin: 0 auto;
+  padding: 2rem 1.5rem 4rem;
+}
+
+/* ---------- Header ---------- */
+.app-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.app-header h1 {
+  font-size: 2.2rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover), #c084fc);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  letter-spacing: -0.02em;
+}
+
+.app-header p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 0.3rem;
+}
+
+/* ---------- Cards ---------- */
+.card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1.25rem;
+  margin-bottom: 1rem;
+  backdrop-filter: blur(12px);
+  animation: fadeUp 0.3s ease;
+}
+
+.card-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-secondary);
+  margin-bottom: 0.8rem;
+}
+
+/* ---------- Queue List ---------- */
+.queue-list {
+  list-style: none;
+}
+
+.queue-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 0.6rem;
+  border-radius: var(--radius-sm);
+  transition: background var(--transition);
+}
+
+.queue-item:hover {
+  background: rgba(124, 92, 252, 0.06);
+}
+
+.queue-item+.queue-item {
+  border-top: 1px solid var(--border);
+}
+
+.queue-item-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.queue-item-name {
+  font-weight: 600;
+  font-size: 0.95rem;
+}
+
+.queue-item-meta {
+  display: block;
+  color: var(--text-secondary);
+  font-size: 0.78rem;
+  margin-top: 0.1rem;
+}
+
+.queue-item-wait {
+  display: block;
+  color: var(--accent-hover);
+  font-size: 0.78rem;
+  margin-top: 0.15rem;
+  font-style: italic;
+}
+
+.queue-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Clickable queue items (dashboard) */
+.queue-item-clickable {
+  cursor: pointer;
+}
+
+.queue-item-clickable:hover {
+  background: rgba(124, 92, 252, 0.1);
+}
+
+.queue-item-active {
+  background: rgba(124, 92, 252, 0.12);
+  border-left: 3px solid var(--accent);
+}
+
+/* ---------- Position Badge ---------- */
+.position-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: var(--accent-glow);
+  color: var(--accent-hover);
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+}
+
+/* ---------- Status Tags ---------- */
+.status-tag {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  padding: 0.25rem 0.6rem;
+  border-radius: 99px;
+}
+
+.status-tag.waiting {
+  background: var(--accent-glow);
+  color: var(--accent-hover);
+}
+
+.status-tag.served {
+  background: var(--success-bg);
+  color: var(--success);
+}
+
+.status-tag.skipped {
+  background: var(--warning-bg);
+  color: var(--warning);
+}
+
+/* ---------- Buttons ---------- */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.65rem 1.5rem;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-weight: 600;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition);
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: #fff;
+  box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: var(--accent-hover);
+  box-shadow: 0 6px 24px var(--accent-glow);
+  transform: translateY(-1px);
+}
+
+.btn-serve {
+  background: linear-gradient(135deg, var(--success), #24b070);
+  color: #fff;
+  width: 100%;
+  box-shadow: 0 4px 16px rgba(44, 201, 132, 0.2);
+}
+
+.btn-serve:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 24px rgba(44, 201, 132, 0.3);
+}
+
+.btn-skip {
+  background: var(--warning-bg);
+  color: var(--warning);
+  padding: 0.35rem 0.8rem;
+  font-size: 0.78rem;
+  border-radius: 99px;
+}
+
+.btn-skip:hover {
+  background: rgba(240, 160, 48, 0.2);
+  transform: scale(1.05);
+}
+
+.btn-back {
+  background: rgba(100, 100, 160, 0.15);
+  color: var(--text-primary);
+  padding: 0.4rem 0.7rem;
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.btn-back:hover {
+  background: rgba(100, 100, 160, 0.25);
+}
+
+.btn-create-new {
+  width: 100%;
+  margin-top: 0.8rem;
+}
+
+/* ---------- Form / Inputs ---------- */
+.setup-section {
+  display: flex;
+  gap: 0.75rem;
+  margin-bottom: 1.5rem;
+}
+
+.setup-section input,
+.join-form input {
+  flex: 1;
+  padding: 0.7rem 1rem;
+  background: rgba(30, 30, 60, 0.7);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font);
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  outline: none;
+  transition: border-color var(--transition);
+}
+
+.setup-section input:focus,
+.join-form input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-glow);
+}
+
+.join-form {
+  display: flex;
+  gap: 0.75rem;
+}
+
+/* ---------- Queue Header ---------- */
+.queue-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  backdrop-filter: blur(12px);
+}
+
+.queue-header-left {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.queue-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.queue-id-tag {
+  font-size: 0.72rem;
+  color: var(--text-secondary);
+  background: rgba(100, 100, 160, 0.1);
+  padding: 0.25rem 0.6rem;
+  border-radius: 99px;
+}
+
+/* ---------- Explanation Panel ---------- */
+.explanation-panel {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  padding: 1rem;
+  background: linear-gradient(135deg, rgba(124, 92, 252, 0.08), rgba(44, 201, 132, 0.05));
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+  line-height: 1.5;
+  color: var(--text-secondary);
+}
+
+.explanation-icon {
+  font-size: 1.3rem;
+  flex-shrink: 0;
+}
+
+/* ---------- Section Gap ---------- */
+.section-gap {
+  margin-bottom: 1rem;
+}
+
+/* ---------- Empty State ---------- */
+.empty-state {
+  color: var(--text-secondary);
+  text-align: center;
+  padding: 1.2rem 0;
+  font-size: 0.9rem;
+}
+
+/* ---------- Toast Notification ---------- */
+.toast {
+  position: fixed;
+  bottom: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 0.75rem 1.5rem;
+  border-radius: var(--radius-sm);
+  font-weight: 600;
+  font-size: 0.85rem;
+  z-index: 100;
+  animation: toastIn 0.3s ease;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+.toast.success {
+  background: var(--success);
+  color: #fff;
+}
+
+.toast.error {
+  background: var(--error);
+  color: #fff;
+}
+
+/* ---------- Error Boundary ---------- */
+.error-boundary {
+  text-align: center;
+  padding: 4rem 2rem;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+.error-boundary-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.error-boundary h2 {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.error-boundary-message {
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+/* ---------- Animations ---------- */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 480px) {
+  .app {
+    padding: 1.2rem 1rem 3rem;
+  }
+
+  .app-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .setup-section {
+    flex-direction: column;
+  }
+
+  .join-form {
+    flex-direction: column;
+  }
+}

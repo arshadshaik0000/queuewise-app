@@ -1,0 +1,114 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="340" viewBox="0 0 800 340">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0d1117"/>
+      <stop offset="100%" style="stop-color:#161b22"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+    <linearGradient id="green" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#4ade80"/>
+      <stop offset="100%" style="stop-color:#22d3ee"/>
+    </linearGradient>
+    <linearGradient id="orange" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#fb923c"/>
+      <stop offset="100%" style="stop-color:#f43f5e"/>
+    </linearGradient>
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="800" height="340" fill="url(#bg)" rx="10"/>
+
+  <!-- Title -->
+  <text x="400" y="30" text-anchor="middle" font-family="'Segoe UI', Arial, sans-serif" font-size="14" fill="#667eea" font-weight="600">ARCHITECTURE</text>
+
+  <!-- HTTP Request box -->
+  <rect x="300" y="45" width="200" height="32" rx="6" fill="#1e2330" stroke="#667eea" stroke-width="1.5" opacity="0.9"/>
+  <text x="400" y="66" text-anchor="middle" font-family="monospace" font-size="12" fill="#e0e0ff">HTTP Request</text>
+
+  <!-- Arrow 1 -->
+  <line x1="400" y1="77" x2="400" y2="90" stroke="#667eea" stroke-width="1.5" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="6;0" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="395,89 400,96 405,89" fill="#667eea"/>
+
+  <!-- Routes -->
+  <rect x="300" y="97" width="200" height="32" rx="6" fill="#1a1e2e" stroke="#667eea" stroke-width="1"/>
+  <text x="400" y="118" text-anchor="middle" font-family="monospace" font-size="12" fill="#c0c0e0">🛣️ Routes</text>
+  <text x="520" y="118" font-family="monospace" font-size="9" fill="#606080">parse HTTP</text>
+
+  <!-- Arrow 2 -->
+  <line x1="400" y1="129" x2="400" y2="142" stroke="#667eea" stroke-width="1.5" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="6;0" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="395,141 400,148 405,141" fill="#667eea"/>
+
+  <!-- Schemas -->
+  <rect x="300" y="149" width="200" height="32" rx="6" fill="#1a1e2e" stroke="#667eea" stroke-width="1"/>
+  <text x="400" y="170" text-anchor="middle" font-family="monospace" font-size="12" fill="#c0c0e0">📋 Schemas</text>
+  <text x="520" y="170" font-family="monospace" font-size="9" fill="#606080">validate input</text>
+
+  <!-- Arrow 3 -->
+  <line x1="400" y1="181" x2="400" y2="194" stroke="#667eea" stroke-width="1.5" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="6;0" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="395,193 400,200 405,193" fill="#667eea"/>
+
+  <!-- Services (bigger, center) -->
+  <rect x="280" y="201" width="240" height="36" rx="8" fill="#1a1e2e" stroke="url(#accent)" stroke-width="2">
+    <animate attributeName="stroke-opacity" values="1;0.5;1" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <text x="400" y="224" text-anchor="middle" font-family="monospace" font-size="13" fill="#e0e0ff" font-weight="bold">⚙️ Services</text>
+  <text x="540" y="224" font-family="monospace" font-size="9" fill="#606080">orchestrate</text>
+
+  <!-- Left branch: Rules -->
+  <line x1="330" y1="237" x2="200" y2="260" stroke="url(#orange)" stroke-width="1.5" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="6;0" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="198,255 195,264 204,261" fill="#fb923c"/>
+  <rect x="100" y="262" width="200" height="32" rx="6" fill="#1a1e2e" stroke="#fb923c" stroke-width="1"/>
+  <text x="200" y="283" text-anchor="middle" font-family="monospace" font-size="12" fill="#fbbf24">🛡️ Rules (8)</text>
+  <text x="200" y="306" text-anchor="middle" font-family="monospace" font-size="9" fill="#606080">validate only, no DB writes</text>
+
+  <!-- Right branch: AI -->
+  <line x1="470" y1="237" x2="600" y2="260" stroke="url(#green)" stroke-width="1.5" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="6;0" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="596,255 604,261 601,252" fill="#4ade80"/>
+  <rect x="500" y="262" width="200" height="32" rx="6" fill="#1a1e2e" stroke="#4ade80" stroke-width="1"/>
+  <text x="600" y="283" text-anchor="middle" font-family="monospace" font-size="12" fill="#4ade80">🤖 AI Explainer</text>
+  <text x="600" y="306" text-anchor="middle" font-family="monospace" font-size="9" fill="#606080">read-only text generation</text>
+
+  <!-- Lock icon on AI -->
+  <text x="710" y="283" font-size="14">🔒</text>
+
+  <!-- Center down: Repository -->
+  <line x1="400" y1="237" x2="400" y2="260" stroke="#667eea" stroke-width="1.5" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="6;0" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="395,259 400,266 405,259" fill="#667eea"/>
+  <rect x="310" y="267" width="180" height="28" rx="6" fill="#1a1e2e" stroke="#667eea" stroke-width="1"/>
+  <text x="400" y="286" text-anchor="middle" font-family="monospace" font-size="12" fill="#c0c0e0">🗄️ Repository</text>
+
+  <!-- Arrow to DB -->
+  <line x1="400" y1="295" x2="400" y2="305" stroke="#667eea" stroke-width="1.5" stroke-dasharray="3,3">
+    <animate attributeName="stroke-dashoffset" values="6;0" dur="0.5s" repeatCount="indefinite"/>
+  </line>
+  <polygon points="395,304 400,311 405,304" fill="#667eea"/>
+  <rect x="330" y="312" width="140" height="24" rx="12" fill="#667eea" opacity="0.15" stroke="#667eea" stroke-width="1"/>
+  <text x="400" y="329" text-anchor="middle" font-family="monospace" font-size="11" fill="#667eea">💾 SQLite</text>
+
+  <!-- Animated data packet going down the center -->
+  <circle cx="400" cy="77" r="3" fill="#667eea" opacity="0">
+    <animate attributeName="cy" values="77;96;129;148;181;200;237;266;295;311" dur="3s" repeatCount="indefinite"/>
+    <animate attributeName="opacity" values="0;1;1;1;1;1;1;1;1;0" dur="3s" repeatCount="indefinite"/>
+  </circle>
+</svg>
