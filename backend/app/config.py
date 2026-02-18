@@ -10,7 +10,7 @@ class Config:
 
     SQLALCHEMY_DATABASE_URI = os.environ.get(
         "DATABASE_URL",
-        f"sqlite:///{os.path.join(BASE_DIR, '..', 'queuewise.db')}"
+        "sqlite:////tmp/queuewise.db"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
